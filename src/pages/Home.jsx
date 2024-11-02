@@ -15,7 +15,7 @@ const Home = () => {
       <div className="bg-gray-100">
         <HeroSection />
         <CourseSlider />
-        {/* <LearningOptions /> */}
+        <LearningOptions />
         <QuranLearning />
         <MemorizeQuran />
       </div>

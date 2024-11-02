@@ -229,7 +229,7 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <p className="text-gray-400 font-inter">
+          <p className="text-gray-400 font-inter tracking-wider">
             © Copyright alquran {new Date().getFullYear()}. All Rights Reserved
           </p>
         </div>
