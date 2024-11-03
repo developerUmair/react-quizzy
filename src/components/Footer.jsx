@@ -4,10 +4,14 @@ import React from "react";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { IoLogoTwitter } from "react-icons/io5";
+import footer from "../assets/footer.png";
 
 const Footer = () => {
   return (
-    <footer className=" bg-primary text-gray-300 p-8 sm:p-12 lg:p-16">
+    <footer
+      style={{ backgroundImage: `url(${footer})` }}
+      className="bg-cover bg-bottom bg-no-repeat bg-primary text-gray-300 p-8 sm:p-12 lg:p-x-16 lg:pb-5 lg:pt-20"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Newsletter Section */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">

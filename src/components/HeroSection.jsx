@@ -2,10 +2,11 @@ import React from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import Slider from "./Slider";
+import RegisterForm from "./RegisterForm";
 
 const HeroSection = () => {
   return (
-    <section className="bg-primary">
+    <section className="bg-[#222221]">
       <div className="max-w-6xl text-white py-10 lg:py-20 px-6 lg:px-16 flex flex-col lg:flex-row lg:justify-between mx-auto">
         {/* Left Content */}
         <div className="lg:w-1/2 space-y-6">
@@ -32,14 +33,9 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Content */}
-        <div className="md:w-[60%] lg:w-[35%] flex items-center justify-center relative mt-10 lg:mt-0">
-          <Slider
-            slidesToShow={1}
-            btnColor="secondary"
-            priceColor="[#dbac66]"
-            propColor="[#dbac66]"
-          />
+        {/* Right Content - Register Form */}
+        <div className="lg:w-1/2 mt-8 lg:mt-0">
+          <RegisterForm />
         </div>
       </div>
     </section>
