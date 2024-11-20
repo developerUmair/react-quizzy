@@ -1,8 +1,11 @@
-import React from "react";
-import Home from "./pages/Home";
+import Tabs from "./components/Tabs";
 
 const App = () => {
-  return <Home />;
+  return (
+    <>
+      <Tabs />
+    </>
+  );
 };
 
 export default App;
