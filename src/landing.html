@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-height: 100%;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #f8fff4;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header img {
+            height: 48px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media(min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+        }
+
+        nav span {
+            color: black;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        nav span:hover {
+            color: gray;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .user-section {
+                display: none;
+            }
+
+            .menu-icon {
+                display: flex;
+                cursor: pointer;
+                z-index: 50;
+            }
+        }
+
+        @media (min-width: 481px) {
+            .menu-icon {
+                display: none;
+            }
+        }
+
+        .user-section button {
+            padding: 8px;
+            background-color: #f0f0f0;
+            border: 1px solid gray;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .user-section svg {
+            width: 24px;
+            height: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid gray;
+            border-radius: 50px;
+        }
+
+        .user-profile img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-profile span {
+            font-weight: 500;
+        }
+
+        .background-section {
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .animated-divs {
+            height: 90%;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rotatedivtwo {
+            animation: rotate 6s infinite linear;
+        }
+
+        .rotat {
+            animation: rotate 6s infinite linear reverse;
+        }
+
+
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+
+        .animated-divs div {
+            width: 16px;
+            height: 64px;
+            background-color: blue;
+            position: absolute;
+        }
+
+        .social-icons {
+            position: absolute;
+            left: 40px;
+            bottom: 30px;
+        }
+
+        .social-icons a {
+            margin-right: 20px;
+        }
+
+        .social-icons circle {
+            fill: #aac4c9;
+            transition: fill 0.2s ease;
+        }
+
+        .social-icons a:hover circle {
+            fill: #007bff;
+        }
+
+        .social-icons path {
+            fill: white;
+        }
+
+        .image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .top-center {
+            position: absolute;
+            top: 7.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 100%;
+            height: 330px;
+        }
+
+        .bottom-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: auto;
+            height: 230px;
+        }
+
+        .bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 900px;
+            height: 120px;
+        }
+
+        .bnblogo {
+            position: absolute;
+            top: 8.3rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 170px;
+            height: 100px;
+        }
+
+        @media (max-width: 480px) {
+            .bnblogo {
+                top: 10rem;
+                width: 130px;
+                height: 80px;
+                
+            }
+        }
+
+        .custom-text {
+            text-align: center;
+            position: absolute;
+            top: 1rem;
+            z-index: 50;
+        }
+
+        .custom-heading {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5.5rem;
+        }
+
+        .custom-subheading {
+            font-size: 1.875rem;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .custom-description {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #93969c;
+            margin-top: 10px;
+        }
+
+        .privacy {
+            position: absolute;
+            right: 50px;
+            bottom: 40px;
+            color: blue;
+            font: bold;
+        }
+
+        @media (max-width: 480px) {
+            .privacy {
+                right: 30px;
+                bottom: 5px;
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-center {
+                height: 80px;
+            }
+
+            .bottom-left {
+                height: 200px;
+            }
+
+            .bottom-right {
+                height: 90px;
+            }
+            .top-center{
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-center {
+                top: 7.5rem;
+                height: 80px;
+
+            }
+
+            .bottom-left {
+                height: 150px;
+                width: 20%;
+            }
+
+
+            .bottom-right {
+                width: 70%;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .top-center {
+                height: 400px;
+            }
+
+            .bottom-left {
+                height: 200px;
+            }
+
+            .bottom-right {
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 1440px) {
+            .top-center {
+                height: 400px;
+            }
+
+            .bottom-left {
+                height: 240px;
+            }
+
+            .bottom-right {
+                height: 140px;
+            }
+        }
+        @media (min-width: 1441px) {
+            .top-center {
+                height: 500px;
+            }
+
+            .bottom-left {
+                height: 240px;
+            }
+
+            .bottom-right {
+                height: 140px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+            .custom-text {
+                top: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .custom-subheading {
+                font-size: 2rem;
+                margin-top: 6.4rem !important;
+            }
+
+
+            .custom-heading {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .custom-subheading {
+                top: 5rem !important;
+               
+            }
+
+
+            .custom-subheading {
+                font-size: 15px !important;
+                color: #007bff;
+                /* margin-bottom: 30px; */
+                /* margin-top: 4rem ; */
+                top: 6rem !important;
+                position: absolute;
+               
+            }
+
+            .custom-description {
+                font-size: 1rem;
+                color: #900C3F;
+                margin-top: 7rem !important;
+                width: 90% !important;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .custom-text {
+                top: 10px;
+            }
+
+            .custom-heading {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .custom-subheading {
+                font-size: 1.5rem;
+                margin-top: 5.5rem;
+            }
+
+            .custom-description {
+                font-size: 1.25rem;
+                width: 50%;
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .custom-text {
+                top: 1rem;
+            }
+
+            .custom-heading {
+                font-size: 3rem;
+                margin-bottom: 4rem;
+            }
+
+            .custom-subheading {
+                font-size: 2rem;
+                margin-top: 7rem;
+            }
+
+            .custom-description {
+                font-size: 1.3rem;
+                width: 50%;
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
+        @media (max-width: 1439px) {
+            .custom-text {
+                top: 1rem;
+            }
+
+            .custom-heading {
+                font-size: 3rem;
+                margin-bottom: 4rem;
+            }
+
+            .custom-subheading {
+                font-size: 2rem;
+                margin-top: 8.5rem;
+            }
+
+            .custom-description {
+                font-size: 1.3rem;
+            }
+        }
+        @media (min-width: 1440px) {
+            .custom-text {
+                top: 1rem;
+            }
+
+            .custom-heading {
+                font-size: 3rem;
+                margin-bottom: 4rem;
+            }
+
+            .custom-subheading {
+                font-size: 2rem;
+                margin-top: 8rem;
+            }
+
+            .custom-description {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .rotatedivtwo:nth-child(1),
+            .rotat:nth-child(2),
+            .rotatediv:nth-child(4),
+            .rotatediv:nth-child(5),
+            .rotatedivtwo:nth-child(8),
+            .rotatediv:nth-child(9),
+            .rotatedivtwo:nth-child(10),
+            .rotat:nth-child(11),
+            .new-rotatediv:nth-child(18),
+            .new-rotatediv:nth-child(19) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header
+    <header>
+        <div class="logo">
+            <img src="blacklogo.png" alt="Logo">
+        </div>
+
+        <nav>
+            <span>Blogs & News</span>
+            <span>About Us</span>
+            <span>Contact Us</span>
+        </nav>
+
+        <div class="user-section">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .415-.162.815-.45 1.126L4 17h5m0 0v1a3 3 0 106 0v-1m-6 0h6">
+                    </path>
+                </svg>
+            </button>
+
+            <div class="user-profile">
+                <img src="Ellipse.png" alt="User">
+                <span>Antonio</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </div>
+
+        </div>
+        <div class="menu-icon">
+            <span>&#9776;</span> 
+        </div>
+    </header> -->
+
+    <!-- Main Content -->
+    <div class="background-section" style="background-image: url('homepagebg.jpg')">
+        <div class="animated-divs" style="position: relative; height: 98vh; overflow: hidden;">
+            <div class="rotatedivtwo"
+                style="position: absolute; top: 15%; left: 10%; height: 40px; background-color: #9FD3C7; animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="rotat"
+                style="position: absolute; top: 15%; left: 20%; height: 56px; background-color: #003366; animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="rotatediv"
+                style="position: absolute; top: 45%; left: 20%; height: 64px; background-color: #006400; transform: rotate(45deg); animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="rotatediv"
+                style="position: absolute; top: 45%; left: 80%; height: 64px; background-color: #006400; transform: rotate(45deg); animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="rotatedivtwo"
+                style="position: absolute; top: 30%; left: 5%; width: 30px; height: 30px; background-color: #FF5733; border-radius: 50%; animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+
+            <div class="rotatedivtwo"
+                style="position: absolute; top: 20%; left: 75%; width: 40px; height: 20px; background-color: #FFC300; transform: rotate(30deg); animation: bounce 1.5s infinite; z-index: 50;">
+            </div>
+            <div class="rotatediv"
+                style="position: absolute; top: 50%; left: 15%; width: 10px; height: 80px; background-color: #DAF7A6; animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="rotatedivtwo"
+                style="position: absolute; top: 60%; left: 35%; width: 70px; height: 70px; background-color: #581845; border-radius: 50%; animation: bounce 1.5s infinite; z-index: 50;">
+            </div>
+            <div class="rotat"
+                style="position: absolute; top: 70%; left: 25%; width: 60px; height: 15px; background-color: #900C3F; transform: rotate(90deg); animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="rotatedivtwo"
+                style="position: absolute; top: 80%; left: 55%; width: 20px; height: 20px; background-color: #FFC300; border-radius: 50%; animation: bounce 1.5s infinite; z-index: 50;">
+            </div>
+            <div class="rotatediv"
+                style="position: absolute; top: 25%; left: 90%; width: 50px; height: 50px; background-color: #581845; animation: rotate 4s linear infinite; z-index: 13;">
+            </div>
+            <div class="rotatedivtwo"
+                style="position: absolute; top: 40%; left: 90%; width: 30px; height: 30px; background-color: #900C3F; border-radius: 50%; animation: bounce 1.5s infinite; z-index: 50;">
+            </div>
+            <div class="rotatediv"
+                style="position: absolute; top: 10%; left: 90%; width: 40px; height: 10px; background-color: #FF5733; transform: rotate(30deg); animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+
+            <div class="new-rotatediv"
+                style="position: absolute; bottom: 10%; right: 15%; width: 30px; height: 30px; background-color: #FF8C00; border-radius: 50%; animation: bounce 1.5s infinite; z-index: 50;">
+            </div>
+            <div class="new-rotatediv"
+                style="position: absolute; bottom: 20%; right: 5%; width: 50px; height: 10px; background-color: #4B0082; animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="new-rotatediv"
+                style="position: absolute; bottom: 15%; right: 25%; width: 40px; height: 40px; background-color: #FF1493; border-radius: 50%; animation: rotate 4s linear infinite; z-index: 50;">
+            </div>
+            <div class="new-rotatediv"
+                style="position: absolute; bottom: 5%; right: 30%; width: 60px; height: 20px; background-color: #008080; animation: bounce 1.5s infinite; z-index: 50;">
+            </div>
+        </div>
+
+
+        <div class="image-container">
+            <img src="toppic.png" class="top-center" alt="Top Center">
+            <img src="leftpic.png" class="bottom-left" alt="Bottom Left">
+            <img src="rightpic.png" class="bottom-right" alt="Bottom Right">
+            <img src="blacklogo.png" class="bnblogo" alt="bnblogo" />
+            <!-- <img src="icon.png" class="bnbicon" alt="bnbicon" /> -->
+        </div>
+
+        <div class="custom-text">
+            <h1 class="custom-heading">Coming Soon...</h1>
+            <p class="custom-subheading">Short Term Rental Owners Exchange</p>
+            <p class="custom-description">The best way to get the most out of your short term rental property</p>
+        </div>
+
+        <div class="privacy">
+            <span>Privacy Policy</span>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <svg xmlns="http://www.w3.org/2000/svg" width="205" height="31" viewBox="0 0 205 31" fill="none">
+                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+                    <circle cx="155" cy="15.3867" r="15" fill="#AAC4C9" className="hover:fill-blue-500" />
+                    <path fillRule="evenodd" clipRule="evenodd"
+                        d="M153.081 15.8348L147.087 8.38672H151.834L155.534 12.9901L159.487 8.40745H162.102L156.799 14.563L163.087 22.3867H158.354L154.347 17.4084L150.07 22.3729H147.441L153.081 15.8348ZM159.043 21.0067L149.998 9.76671H151.144L160.178 21.0067H159.043Z"
+                        fill="white" />
+                </a>
+                <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">
+                    <circle cx="120" cy="15.3867" r="15" fill="#AAC4C9" className="hover:fill-blue-500" />
+                    <path
+                        d="M121.137 7.38672C116.478 7.38672 114 10.3724 114 13.6281C114 15.1379 114.844 17.0207 116.194 17.6179C116.399 17.7103 116.511 17.671 116.556 17.4808C116.597 17.3363 116.774 16.6404 116.86 16.312C116.887 16.2068 116.873 16.1155 116.788 16.0166C116.34 15.4981 115.984 14.5535 115.984 13.6674C115.984 11.3967 117.789 9.19197 120.861 9.19197C123.517 9.19197 125.376 10.9175 125.376 13.3858C125.376 16.175 123.9 18.1045 121.982 18.1045C120.92 18.1045 120.13 17.2715 120.381 16.2408C120.683 15.0136 121.277 13.6939 121.277 12.8088C121.277 12.0151 120.829 11.3585 119.913 11.3585C118.832 11.3585 117.956 12.4285 117.956 13.865C117.956 14.7777 118.279 15.394 118.279 15.394C118.279 15.394 117.21 19.7121 117.011 20.5186C116.675 21.884 117.057 24.0951 117.09 24.2853C117.11 24.3905 117.228 24.4234 117.294 24.3374C117.399 24.1992 118.691 22.3557 119.053 21.0233C119.185 20.5377 119.726 18.5689 119.726 18.5689C120.082 19.2117 121.109 19.7504 122.204 19.7504C125.459 19.7504 127.812 16.889 127.812 13.338C127.8 9.93362 124.887 7.38672 121.137 7.38672Z"
+                        fill="white" />
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                    <circle cx="15" cy="15.3867" r="15" fill="#AAC4C9" className="hover:fill-blue-500" />
+                    <path
+                        d="M13.4888 23.3191H16.3422V15.788H18.3272L18.5133 13.256H16.3422C16.3422 13.256 16.3422 12.2821 16.3422 11.8277C16.3422 11.2434 16.4663 10.9837 17.0246 10.9837C17.4588 10.9837 18.5753 10.9837 18.5753 10.9837V8.38672C18.5753 8.38672 16.9625 8.38672 16.5903 8.38672C14.4813 8.38672 13.4888 9.36057 13.4888 11.2434C13.4888 12.8664 13.4888 13.256 13.4888 13.256H12V15.788H13.4888V23.3191Z"
+                        fill="white" />
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <circle cx="50" cy="15.3867" r="15" fill="#AAC4C9" className="hover:fill-blue-500" />
+                    <path
+                        d="M57.216 12.7659C57.1477 11.9762 57.0793 11.4019 56.8743 10.9712C56.6692 10.4686 56.4642 10.0379 56.0541 9.67895C55.644 9.2482 55.234 9.03283 54.8239 8.81746C54.3455 8.60209 53.867 8.5303 53.1152 8.45851C52.2951 8.38672 52.09 8.38672 50.108 8.38672C48.1943 8.38672 47.9209 8.38672 47.1691 8.45851C46.4173 8.45851 45.9389 8.60209 45.4605 8.74567C44.982 8.96104 44.572 9.2482 44.2302 9.67895C43.8202 10.0379 43.5468 10.4686 43.3417 10.9712C43.205 11.4737 43.0683 11.9762 43.0683 12.7659C43 13.5556 43 13.8428 43 15.8529C43 17.8631 43 18.1502 43.0683 18.9399C43.1367 19.7296 43.205 20.3039 43.4101 20.7347C43.6151 21.2372 43.8202 21.6679 44.2302 22.0269C44.6403 22.4576 45.0504 22.673 45.4605 22.8884C45.9389 23.1038 46.4173 23.1755 47.1691 23.2473C47.9209 23.3191 48.1943 23.3191 50.108 23.3191C52.0217 23.3191 52.2951 23.3191 53.0469 23.2473C53.7987 23.1755 54.3455 23.1038 54.7555 22.8884C55.234 22.673 55.644 22.4576 55.9858 22.0269C56.3958 21.5962 56.6009 21.1654 56.8059 20.7347C57.011 20.2321 57.0793 19.7296 57.1477 18.9399C57.216 18.1502 57.216 17.8631 57.216 15.8529C57.2843 13.8428 57.2843 13.5556 57.216 12.7659ZM50.108 19.7296C48.0576 19.7296 46.4173 18.0066 46.4173 15.8529C46.4173 13.6992 48.0576 11.9762 50.108 11.9762C52.1584 11.9762 53.7987 13.6992 53.7987 15.8529C53.7987 18.0066 52.1584 19.7296 50.108 19.7296ZM53.9354 12.7659C53.457 12.7659 53.0469 12.3352 53.0469 11.8327C53.0469 11.3301 53.457 10.8994 53.9354 10.8994C54.4138 10.8994 54.8239 11.3301 54.8239 11.8327C54.8239 12.407 54.4138 12.7659 53.9354 12.7659ZM52.5001 15.8529C52.5001 17.2169 51.4066 18.3656 50.108 18.3656C48.8094 18.3656 47.7159 17.2169 47.7159 15.8529C47.7842 14.4889 48.8094 13.412 50.108 13.412C51.4749 13.412 52.5001 14.4889 52.5001 15.8529Z"
+                        fill="white" />
+                </a>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+                    <circle cx="190" cy="15.3867" r="15" fill="#AAC4C9" className="hover:fill-blue-500" />
+                    <path
+                        d="M198.082 11.2336C197.888 10.5114 197.319 9.94213 196.596 9.74766C195.277 9.38672 190 9.38672 190 9.38672C190 9.38672 184.724 9.38672 183.405 9.73399C182.696 9.92825 182.113 10.5116 181.919 11.2336C181.572 12.5527 181.572 15.2883 181.572 15.2883C181.572 15.2883 181.572 18.0377 181.919 19.343C182.113 20.0651 182.683 20.6344 183.405 20.8288C184.738 21.1899 190.001 21.1899 190.001 21.1899C190.001 21.1899 195.277 21.1899 196.596 20.8426C197.319 20.6483 197.888 20.079 198.082 19.3569C198.43 18.0377 198.43 15.3022 198.43 15.3022C198.43 15.3022 198.443 12.5527 198.082 11.2336ZM188.32 17.8156V12.761L192.708 15.2883L188.32 17.8156Z"
+                        fill="white" />
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+                    <circle cx="85" cy="15.3867" r="15" fill="#AAC4C9" className="hover:fill-blue-500" />
+                    <path
+                        d="M91.9965 21.3867L92 21.3861V16.2516C92 13.7398 91.4592 11.8049 88.5227 11.8049C87.1111 11.8049 86.1637 12.5796 85.777 13.314H85.7362V12.0394H82.9519V21.3861H85.8511V16.758C85.8511 15.5394 86.0821 14.3611 87.5912 14.3611C89.0781 14.3611 89.1002 15.7517 89.1002 16.8361V21.3867H91.9965ZM78.231 12.04H81.1337V21.3867H78.231V12.04ZM79.6812 7.38672C78.7531 7.38672 78 8.1398 78 9.06789C78 9.99597 78.7531 10.7648 79.6812 10.7648C80.6092 10.7648 81.3623 9.99597 81.3623 9.06789C81.362 8.62211 81.1848 8.19468 80.8696 7.87946C80.5544 7.56425 80.1269 7.38703 79.6812 7.38672Z"
+                        fill="white" />
+                </a>
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,10 +1,14 @@
-import Tabs from "./components/Tabs";
+import Main from './components/Main.jsx';
+import Header from './Header.jsx';
 
 const App = () => {
   return (
-    <>
-      <Tabs />
-    </>
+    <div className='app'>
+      <Header />
+      <main className="main">
+        <Main />
+      </main>
+    </div>
   );
 };
 
