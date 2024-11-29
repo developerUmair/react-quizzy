@@ -5,11 +5,11 @@ import Header from "./Header.jsx";
 const App = () => {
   return (
     <div className="app">
-      {/* <Header /> */}
-      {/* <main className="main">
+      <Header />
+      <main className="main">
         <Main />
-      </main> */}
-      <Challenge />
+      </main>
+      {/* <Challenge /> */}
     </div>
   );
 };
