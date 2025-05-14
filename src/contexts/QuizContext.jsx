@@ -1,14 +1,6 @@
-import { useEffect, useReducer } from "react";
-import Loader from "../Loader";
-import Error from "../Error";
-import StartScreen from "./StartScreen";
-import Question from "./Question";
-import NextButton from "./NextButton";
-import Progress from "./Progress";
-import FinishScreen from "./FinishScreen";
-import Timer from "./Timer";
-import Footer from "./Footer";
-import { useQuiz } from "../contexts/QuizContext";
+import { createContext, useContext, useEffect, useReducer } from "react";
+
+const QuizContext = createContext();
 
 const SECS_PER_QUESTION = 30;
 
@@ -85,27 +77,57 @@ function reducer(state, action) {
   }
 }
 
-const Main = () => {
-  const { status } = useQuiz();
+function QuizProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    questions,
+    status,
+    index,
+    answer,
+    points,
+    highscore,
+    secondsRemaining,
+  } = state;
+
+  const numQuestions = questions.length;
+  const maxPossiblePoints = questions.reduce(
+    (prev, curr) => prev + curr.points,
+    0
+  );
+
+  useEffect(() => {
+    fetch("http://localhost:8000/questions")
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: "dataReceived", payload: data }))
+      .catch((err) => dispatch({ type: "dataFailed" }));
+  }, []);
 
   return (
-    <main>
-      {status === "loading" && <Loader />}
-      {status === "error" && <Error />}
-      {status === "ready" && <StartScreen />}
-      {status === "active" && (
-        <>
-          <Progress />
-          <Question />
-          <Footer>
-            <Timer />
-            <NextButton />
-          </Footer>
-        </>
-      )}
-      {status === "finished" && <FinishScreen />}
-    </main>
+    <QuizContext.Provider
+      value={{
+        questions,
+        status,
+        index,
+        answer,
+        points,
+        highscore,
+        secondsRemaining,
+        dispatch,
+        numQuestions,
+        maxPossiblePoints,
+      }}
+    >
+      {children}
+    </QuizContext.Provider>
   );
-};
+}
 
-export default Main;
+function useQuiz() {
+  const context = useContext(QuizContext);
+  if (context === undefined) {
+    throw new Error("useQuiz must be used within a QuizProvider");
+  }
+  return context;
+}
+
+export { QuizProvider, useQuiz };
